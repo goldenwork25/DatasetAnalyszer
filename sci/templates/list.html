@@ -1,0 +1,52 @@
+{% extends 'base/base.html'%}
+{% load static %}
+{% block content %}
+{% load static %}
+<style>
+  .card {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+  }
+  
+  /* On mouse-over, add a deeper shadow */
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+  
+  /* Add some padding inside the card container */
+  .container {
+    padding: 2px 16px;
+  }
+  
+</style>
+
+<article class = 'jumbotron'>
+
+</article>
+
+<div class = 'container'>
+  this is contex
+  {{context}}
+
+        <div class= 'row'>
+          {%for file in object_list%}
+          <div class='col-md-3'>
+            <div class = 'card'>
+              <a href="{{file.get_absolute_url }}">
+              <img src="{% static 'document.jpg' %}" alt="My image" style="width:100%">
+              </a>
+              {{file.name}}
+            </div>
+          </div>
+       
+        {%endfor%}
+      </div>
+</div>
+
+
+
+
+
+{%endblock content%}
+

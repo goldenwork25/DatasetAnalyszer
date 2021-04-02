@@ -1,0 +1,178 @@
+{%extends 'base/base.html'%}
+{%block content%}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+<div class='container'>
+    <P>THIS IS PARAGRAPH FIRST</P>
+this is shape</br>
+    {{shape}}
+    that was shape
+    {{dic_of_dataset.shape}}
+    <div class="row"></div>
+   {%for keys , values in dic_of_dataset.describe.items%}
+   <div class="col-md-3">
+     {{keys}}
+     {%for k , v in values.items%}
+     <div class="col-sm">
+       {{k}}
+       {{v}}
+     </div>
+     {%endfor%}
+   </div>
+   {%endfor%}
+   </div>
+</div>
+<div class="container">
+    {{head_df|safe}}
+    this is div_plot
+    {{plot_div|safe}}
+ 
+ </div>
+
+ <article class="container">
+  <style type="text/css">
+    body {
+    font-family: Georgia, Times, serif;}
+    h1, h2 {
+    font-family: Arial, Verdana, sans-serif;}
+    .credits {
+    font-family: "Courier New", Courier,
+    monospace;}
+    #col_of_fuck{
+      /* background-color:#2D06BE; */
+      color:#2D06BE;
+      /* padding:10px; */
+      column-rule-style: dotted;
+      column-count:3;
+
+    }
+
+
+    </style>
+
+
+ </article>
+
+ <div class="container">
+   this is dataset : {{data_set}}
+  {{keys_of_dict}}
+  <H1>this is new pdf</H1>
+  <!-- {{dict_of_data}} -->
+  this is arrayes of keys
+  <div class="row" id = 'row_of_fuck'>
+  {% for i in keys_of_dict %}
+    <div class="col" id = 'col_of_fuck'>
+      {{i}}
+    </div>
+ 
+  {%endfor%}
+</div>
+
+  {{array_of_keys}}
+ </div>
+ <canvas id="bar-chart"> </canvas>
+ <script>
+    
+        new Chart(document.getElementById("bar-chart"), {
+        type: 'bar',
+        data: {
+          labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
+          datasets: [
+            {
+              label: "My first Data Set",
+              backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+              data: [2478,5267,734,784,433]
+            }
+          ]
+        },
+        options: {
+          legend: { display: false },
+          title: {
+            display: true,
+            text: 'Predicted world population (millions) in 2050'
+          }
+        }
+    });
+     </script>
+
+    <article class="container" id="first_id">
+
+      <form action="{% url 'sci:first' %}" class="AjaxForm"> {% csrf_token %}
+        <p>this is form</p>
+        <input type="hidden" value="{{DataSetModel_id }}">
+        <button type="submit" class="btn btn-link btn-sm" style="padding: 0px;cursor:pointer;">from</button>
+      </form>
+
+     
+
+    </article>
+      <canvas id = 'SecondChart'>
+
+      </canvas>
+
+      <script>
+    console.log('this is the first')
+    var ctx = document.getElementById("SecondChart")    
+    var chart = new Chart(ctx , {
+          type : 'scatter',
+          data: { 
+           labels : ['Ahmad', 'Mohammad' , 'Omid' , 'Atefeh' , 'Shekofeh' , "Fahime"],
+            datasets : [{ 
+              label : 'ScaterDataset',
+              // backgroundColor = ["#3e95cd"],
+              data: [1,2,3,4,5,65]
+            }]
+          },
+          options : {
+            scales: {
+            xAxes: [{
+                type: 'linear',
+                position: 'bottom'
+            }]
+        }
+          }
+        });
+
+      </script>
+
+<div style="width:45%; float: left; margin-left: 25px"> 
+  <canvas id="ThirdChart"></canvas>
+</div>
+
+      
+      <script>
+console.log("this is the Second")
+var ctx = document.getElementById("ThirdChart");
+var scatterChart = new Chart(ctx, {
+    type: 'scatter',
+    data: {
+        datasets: [{
+            label: 'Scatter Dataset',
+            pointHoverBorderColor: 'rgba(100, 0, 0, 0.1)',
+            data: [{
+                x: -10,
+                y: 0
+            }, {
+                x: 0,
+                y: 10
+            }, {
+                x: 10,
+                y: 5
+            }]
+        }]
+    },
+    options: {
+        scales: {
+            xAxes: [{
+                type: 'linear',
+                position: 'bottom'
+            }]
+        }
+    }
+});
+      </script>
+
+
+ 
+
+{%endblock content%}
