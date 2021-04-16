@@ -1,7 +1,25 @@
 {%extends 'base/base.html'%}
 {%block content%}
+{% load static %}
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
+<style>
+  img.bg {
+    /* Set rules to fill background */
+    min-height: 100%;
+    min-width: 1024px;
+    
+    /* Set up proportionate scaling */
+    width: 100%;
+    height: auto;
+    
+    /* Set up positioning */
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+    
+  </style>
 <div class='container'>
     <P>THIS IS PARAGRAPH FIRST</P>
 this is shape</br>
@@ -31,6 +49,9 @@ this is shape</br>
 
  <article class="container">
   <style type="text/css">
+    .mystyle{
+      text-align: center;
+    }
     body {
     font-family: Georgia, Times, serif;}
     h1, h2 {

@@ -7,6 +7,8 @@ import numpy as np
 from plotly.offline import plot
 import plotly.graph_objs as go
 import plotly.express as ex
+from .serializers import SciSerializer
+from rest_framework import generics
 
 
 class ListViewPage(ListView):
@@ -57,4 +59,11 @@ def first_view(request):
     print("this is the slug:",DatasetModel.slug)
     return render(request , 'test.html', context = {})
 
+class ListApiView(generics.ListAPIView):
+    queryset = Dataset.objects.all()
+    serializer_class = SciSerializer
 
+class DetailApiView(generics.RetrieveAPIView):
+    queryset = Dataset.objects.all()
+    serializer_class = SciSerializer
+        
